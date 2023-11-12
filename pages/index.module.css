@@ -1,0 +1,12 @@
+/* Specific styles for your HomePage */
+.container {
+    padding: 20px;
+    background-color: #000000;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2em;
+    color: #ffffff;
+  }
+  
