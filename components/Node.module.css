@@ -1,0 +1,29 @@
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* Keeps it circular */
+    background-color: transparent; /* Transparent background */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white; /* White border */
+    outline: none; /* Removes default button outline */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+  
+  .circle:hover {
+    opacity: 0.7; /* Changes opacity on hover */
+  }
+  
+  .expand {
+    animation: expandEffect 0.3s ease-out forwards;
+  }
+  
+  @keyframes expandEffect {
+    to {
+      opacity: 0;
+      transform: scale(10); /* Expands to 5 times its size */
+    }
+  }
+  

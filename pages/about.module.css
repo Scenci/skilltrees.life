@@ -1,0 +1,14 @@
+/*ABOUT CSS*/
+.container {
+    height: 100vh;
+    width: 100vw;
+    background-color: #000000;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2em;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
