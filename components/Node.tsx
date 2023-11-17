@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Node.module.css';
 
-const Node = () => {
+interface NodeProps {
+  nodeText: string;
+  onClick: () => void;
+}
 
-    const [isClicked, setIsClicked] = useState(false);
-
-    const handleClick = () => {
-        setIsClicked(true);
-    };
-
+const Node: React.FC<NodeProps> = ({ nodeText, onClick }) => {
     return (
-        <button className={`${styles.circle} ${isClicked ? styles.expand : ''}`} onClick={handleClick}>
-      Start
-    </button>
-
+        <button className={styles.circle} onClick={onClick}>
+            {nodeText}
+        </button>
     );
-}; export default Node;
+};
+
+export default Node;

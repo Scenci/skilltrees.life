@@ -1,3 +1,5 @@
+/*Node.module.css*/
+
 .circle {
     width: 70px;
     height: 70px;
@@ -17,13 +19,15 @@
   }
   
   .expand {
-    animation: expandEffect 0.3s ease-out forwards;
+    animation: expandEffect 0.7s ease-out forwards;
   }
   
   @keyframes expandEffect {
     to {
       opacity: 0;
-      transform: scale(10); /* Expands to 5 times its size */
+      transform: scale(4); /* Expands to 5 times its size */
     }
   }
+
+
   
