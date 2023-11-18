@@ -1,33 +1,45 @@
-/*Node.module.css*/
+.nodeContainer {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
 
-.circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%; /* Keeps it circular */
-    background-color: transparent; /* Transparent background */
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid white; /* White border */
-    outline: none; /* Removes default button outline */
-    cursor: pointer; /* Changes cursor to pointer on hover */
-  }
-  
-  .circle:hover {
-    opacity: 0.7; /* Changes opacity on hover */
-  }
-  
-  .expand {
-    animation: expandEffect 0.7s ease-out forwards;
-  }
-  
-  @keyframes expandEffect {
-    to {
-      opacity: 0;
-      transform: scale(4); /* Expands to 5 times its size */
-    }
-  }
+.node {
+  width: 70px; /* Size of the square node */
+  height: 70px;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+}
 
+.optionsContainer {
+  display: block; /* Always block, visibility controlled by React state */
+  position: absolute;
+  left: 100%; /* Position to the right of the node */
+  top: 0;
+  background-color: transparent;
+  padding: 10px;
+  white-space: nowrap;
+}
 
-  
+.plus {
+  margin-bottom: 10px;
+}
+
+.ex {
+  margin-bottom: 10px;
+}
+
+.plus:hover {
+  background-color: grey;
+}
+
+.ex:hover {
+  background-color: grey;
+}
