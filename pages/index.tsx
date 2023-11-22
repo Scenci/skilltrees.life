@@ -11,58 +11,67 @@ import * as d3 from 'd3';
 const HomePage = () => {
   const router = useRouter();
 
-useEffect(() => {
-  const width = 2560, height = 1248;
-
-  const svg = d3.select(`.${styles.NodeRender}`).append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .style("background-color", "black"); // assuming you want a black background
-
-  const generateParticles = () => {
-    // Create a new particle with random position and velocity
-    const particle = svg.append("circle")
-      .attr("cx", Math.random() * width)
-      .attr("cy", Math.random() * height)
-      .attr("r", 4) // radius of particle
-      .style("fill", "white");
-
-  const particleDeath = (particle : any) => {
-    console.log("particle death");
-      particle.transition()
-      .duration(9000)
-      .ease(d3.easeLinear)
-      .style("fill", "blue") // end color
-      .attr("cx", Math.random() * width)
-      .attr("cy", Math.random() * height)
-      .remove();
-  }
-
-    // Animate the particle
-    particle.transition()
-      .duration(9000)
-      .ease(d3.easeLinear)
-      .style("fill", "white") // end color
-      .attr("cx", Math.random() * width)
-      .attr("cy", Math.random() * height)
-      .remove(particleDeath(particle)); // remove the particle once the transition is complete
-
-    // Generate a new particle every 100ms
-    setTimeout(generateParticles, 500);
-  };
-
-  // Start generating particles
-  generateParticles();
-
-  // Cleanup function to stop generating particles when the component unmounts
-  return () => {
-    svg.selectAll("*").interrupt().remove(); // This removes all SVG elements
-    clearTimeout(generateParticles); // This clears the timeout
-  };
-
+  useEffect(() => {
+    const width = 2560, height = 1248;
+  
+    const svg = d3.select(`.${styles.NodeRender}`).append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .style("background-color", "black");
+  
+    let timeoutId:any; // Variable to store the timeout ID
+  
+    const generateParticles = () => {
+      // Initial position of the particle
+      const startX = Math.random() * width;
+      const startY = Math.random() * height;
     
-
-}, []);
+      // End position of the particle
+      const endX = Math.random() * width;
+      const endY = Math.random() * height;
+    
+      // Create a group for each particle
+      const particleGroup = svg.append("g")
+        .attr("transform", `translate(${startX}, ${startY})`);
+    
+      // Append a circle to the group
+      const particle = particleGroup.append("circle")
+        .attr("r", 4) // Maximum size of the particle
+        .style("fill", "white")
+        .style("opacity", 0); // Start fully transparent
+    
+      // First transition: Fade in and start moving
+      particle.transition()
+        .duration(10000) // 10 seconds to reach full opacity and move halfway
+        .ease(d3.easeLinear)
+        .style("opacity", 1)
+        .attr("transform", `translate(${(endX) / 2}, ${(endY) / 2})`);
+    
+      // Second transition: Move and fade out
+      particle.transition()
+        .delay(10000) // Start after the first transition ends
+        .duration(10000) // 2 seconds to fade out and move to the end position
+        .ease(d3.easeLinear)
+        .style("opacity", 0)
+        .attr("transform", `translate(${endX}, ${endY})`)
+        .remove(); // Remove the particle once the transition is complete
+    
+      // Generate a new particle every 500ms
+      setTimeout(generateParticles, 10);
+    };
+    
+    
+    
+  
+    generateParticles();
+  
+    // Cleanup function
+    return () => {
+      svg.selectAll("*").interrupt().remove();
+      clearTimeout(timeoutId); // Clear the stored timeout ID
+    };
+  }, []);
+  
 
 
 return (
