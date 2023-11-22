@@ -1,0 +1,13 @@
+.parentContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Use viewport height to fill the screen, or adjust as needed */
+    overflow: hidden; /* Prevents scroll on drag */
+    /* Add additional styling as needed */
+  }
+  
+  /* Include styles for your Alert component if necessary */
+  .alert {
+    /* Style your alert messages */
+  }
+  
