@@ -15,11 +15,11 @@ const CircleMenu = () => {
   const nodeClickHandlers = [
 
     () => router.push('/about'),
-    () => { /* Functionality for node 2 */ },
-    () => { /* Functionality for node 3 */ },
-    () => { /* Functionality for node 4 */ },
-    () => { /* Functionality for node 5 */ },
-    () => { /* Functionality for node 7 */ },
+    () => console.log("node 2 clicked"),
+    () => console.log("node 3 clicked"),
+    () => console.log("node 4 clicked"),
+    () => console.log("node 5 clicked"),
+    () => console.log("node 6 clicked"),
    
   ];
 
@@ -27,7 +27,7 @@ const CircleMenu = () => {
     if (!svgRef.current) return;
     const mainButtonRadius = 100;
     const nodeRadius = 40;
-    const numNodes = 6;
+    const numNodes = 2;
     const distanceFromCenter = 200;
 
     const fullExtent = mainButtonRadius + distanceFromCenter + nodeRadius;
@@ -37,6 +37,9 @@ const CircleMenu = () => {
     const svgHeight = fullExtent * 2;
 
     setSvgDimensions({ width: svgWidth, height: svgHeight });
+
+
+    if (!svgRef.current) return;
 
     const svg = d3.select(svgRef.current)
       .attr('width', svgWidth)
@@ -57,10 +60,24 @@ const CircleMenu = () => {
       .attr('r', mainButtonRadius)
       .attr('cx', center.x)
       .attr('cy', center.y)
-      .style('fill', 'transparent')
+      .style('fill', 'black')
       .style('stroke', 'white') // border color of the circle
       .style('stroke-width', 3) // border thickness
-      .on('click', () => setIsOpen(!isOpen));
+      .style('cursor', 'pointer')
+      .on('click', () => {
+        setIsOpen(!isOpen)
+     
+      });
+
+          svg.append('text')
+        .attr('x', center.x)
+        .attr('y', center.y)
+        .attr('dy', '.35em') // Vertically center text
+        .attr('text-anchor', 'middle') // Horizontally center text
+        .style('fill', 'white') // Text color
+        .style('font-size', '20px') // Font size
+        .style('font-weight', 'bold')
+        .text('Skilltrees'); // Text content
 
     if (isOpen) {
       for (let i = 0; i < numNodes; i++) {
@@ -85,11 +102,12 @@ const CircleMenu = () => {
         const lineEndY = center.y + (distanceFromCenter - nodeRadius - marginEnd) * Math.sin(angle);
 
     // Create connecting line
-    svg.append('line')
+    const line = svg.append('line')
       .attr('x1', lineStartX)
       .attr('y1', lineStartY)
       .attr('x2', lineEndX)
       .attr('y2', lineEndY)
+      .style('opacity', 0)
       .style('stroke', 'white')
       .style('stroke-width', 2);
 
@@ -98,14 +116,28 @@ const CircleMenu = () => {
       .attr('r', nodeRadius)
       .attr('cx', x)
       .attr('cy', y)
-      .style('fill', 'transparent')
+      .style('opacity','0')
+      .style('fill', 'black')
       .style('stroke', 'white')
-      .style('stroke-width', 3);
+      .style('stroke-width', 3)
+      .style('cursor', 'pointer')
+      .on('click', nodeClickHandlers[i]);
 
-      node.on('click', nodeClickHandlers[i]);
+      line.transition()
+      .duration(3000)
+      .style('opacity', 1)
+      .ease(d3.easeLinear)
+      .delay(100);
+
+      node.transition()
+      .duration(3000)
+      .delay(500)
+      .style('opacity', 1)
+      .ease(d3.easeLinear);
       
       }
     }
+
   }, [isOpen, svgRef]);
 
   return (
