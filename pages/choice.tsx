@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import styles from './skillchoice.module.css';
+import styles from './choice.module.css';
 //import Node from '../components/Node';
 //import ParentComponent from '../components/ParentComponent';
 
 
 
-const skillchoice = () => {
+const choice = () => {
     return (
       <div className={styles.container}>
         <div className={styles.NodeRender}>
@@ -15,5 +15,5 @@ const skillchoice = () => {
     );
   };
   
-  export default skillchoice;
+  export default choice;
   

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+
+import CircleMenu from '../components/CircleMenu';
+
 import { motion } from 'framer-motion';
 import styles from './index.module.css';
 import * as d3 from 'd3';
@@ -13,8 +16,9 @@ const HomePage = () => {
 
   useEffect(() => {
     const nodeRender:any = document.querySelector(`.${styles.NodeRender}`);
-    let width = nodeRender.clientWidth;
-    let height = nodeRender.clientHeight;
+    const padding = 10;
+    let width = nodeRender.clientWidth - padding * 2;
+    let height = nodeRender.clientHeight - padding * 2;
 
     const svg = d3.select(nodeRender).append("svg")
       .attr("width", width)
@@ -69,7 +73,7 @@ const HomePage = () => {
         .remove(); // Remove the particle once the transition is complete
     
       // Generate a new particle every 500ms
-      setTimeout(generateParticles, 10);
+      setTimeout(generateParticles, 100);
     };
     
     
@@ -90,6 +94,7 @@ const HomePage = () => {
 return (
   <div className={styles.container}>
     <div className={styles.NodeRender}>
+ 
       {/* SVG is appended to this div */}
     </div>
 
@@ -104,7 +109,7 @@ return (
     >
       <h1>skilltrees.life</h1>
     </motion.div>
-
+    <CircleMenu />
   </div>
 );
 };
