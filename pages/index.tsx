@@ -12,13 +12,25 @@ const HomePage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const width = 2560, height = 1248;
-  
-    const svg = d3.select(`.${styles.NodeRender}`).append("svg")
+    const nodeRender:any = document.querySelector(`.${styles.NodeRender}`);
+    let width = nodeRender.clientWidth;
+    let height = nodeRender.clientHeight;
+
+    const svg = d3.select(nodeRender).append("svg")
       .attr("width", width)
       .attr("height", height)
       .style("background-color", "black");
-  
+
+    // Function to resize SVG
+    const resizeSVG = () => {
+      width = nodeRender.clientWidth;
+      height = nodeRender.clientHeight;
+      svg.attr("width", width).attr("height", height);
+    };
+
+    // Add resize event listener
+    window.addEventListener("resize", resizeSVG);
+
     let timeoutId:any; // Variable to store the timeout ID
   
     const generateParticles = () => {
@@ -68,6 +80,7 @@ const HomePage = () => {
     // Cleanup function
     return () => {
       svg.selectAll("*").interrupt().remove();
+      window.removeEventListener("resize", resizeSVG);
       clearTimeout(timeoutId); // Clear the stored timeout ID
     };
   }, []);
