@@ -8,9 +8,6 @@ import { motion } from 'framer-motion';
 import styles from './index.module.css';
 import * as d3 from 'd3';
 
-
-
-
 const HomePage = () => {
   const router = useRouter();
 
@@ -73,12 +70,9 @@ const HomePage = () => {
         .remove(); // Remove the particle once the transition is complete
     
       // Generate a new particle every 500ms
-      setTimeout(generateParticles, 100);
+      setTimeout(generateParticles, 200);
     };
-    
-    
-    
-  
+      
     generateParticles();
   
     // Cleanup function
@@ -89,14 +83,10 @@ const HomePage = () => {
     };
   }, []);
   
-
-
 return (
   <div className={styles.container}>
-    <div className={styles.NodeRender}>
- 
-      {/* SVG is appended to this div */}
-    </div>
+    <div className={styles.NodeRender}></div>
+    <CircleMenu />
 
     <motion.div
       initial="hidden"
@@ -109,9 +99,9 @@ return (
     >
       <h1>skilltrees.life</h1>
     </motion.div>
-    <CircleMenu />
+    
   </div>
-);
+  );
 };
 
 export default HomePage;
