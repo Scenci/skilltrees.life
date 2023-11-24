@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # skilltrees.life
 
 ## The Development
