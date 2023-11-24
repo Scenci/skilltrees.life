@@ -1,0 +1,15 @@
+.navHeader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px; /* Adjust padding as needed */
+    display: flex;
+    gap: 20px; /* Space between links */
+  }
+  
+  .navLink {
+    color: white; /* Set the text color */
+    text-decoration: none; /* Optional: Removes underline from links */
+    /* Add more styles as needed */
+  }
+  

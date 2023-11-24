@@ -1,3 +1,4 @@
+/*index.module.css*/
 .container {
   position: relative;
   flex-direction: column;
@@ -14,7 +15,7 @@
   left: 7%;
   transform: translate(-50%, -50%);
   color: white;
-  z-index: 1; /* Ensures that the title is above the SVG */
+  z-index: 1; 
 }
 
 .NodeRender {
@@ -26,17 +27,25 @@
 .circle {
   width: 70px;
   height: 70px;
-  border-radius: 50%; /* Makes it a circle */
-  background-color: white; /* Circle color */
+  border-radius: 50%; /* Makes it a circle, apperently */
+  background-color: white; 
   color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: opacity 0.5s ease; /* Slow fade effect */
-  border: 2px solid black; /* Adjusted border */
+  transition: opacity 0.5s ease; 
+  border: 2px solid black; 
 }
 
 .circle:hover {
-  opacity: 0.7; /* Changes opacity on hover */
+  opacity: 0.7; 
+}
+
+.NavHeader {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 4; /* Z INDEX HERE */ 
+  cursor: pointer;
 }

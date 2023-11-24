@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import OriginalCircleMenu from '../components/OriginalCircleMenu';
+import NavHeader from '../components/NavHeader';
 import CircleMenu from '../components/CircleMenu';
 import { motion } from 'framer-motion';
 import styles from './index.module.css';
@@ -85,6 +86,8 @@ const HomePage = () => {
   
 return (
   <div className={styles.container}>
+     <div className={styles.NavHeader}> <NavHeader/> </div>
+    
     <div className={styles.NodeRender}></div>
     <CircleMenu />
 
